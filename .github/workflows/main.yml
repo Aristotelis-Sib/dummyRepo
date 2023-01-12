@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Sequential Jobs test
 
 # Controls when the workflow will run
 on:
@@ -21,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tests: ["test_1", "test_2"]
+        tests: ["test_1", "test_2", "test_3", "test_4", "test_5"]
+      max-parallel: 1
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
