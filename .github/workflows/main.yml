@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Sequential Jobs test
+name: CI
 
 # Controls when the workflow will run
 on:
@@ -15,17 +15,31 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+
   build:
+  # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: First 
+        run: python dummyScript.py
+
+  # This workflow contains a single job called "build"
+  deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    needs: build 
     strategy:
       matrix:
         tests: ["test_1", "test_2", "test_3", "test_4", "test_5"]
       max-parallel: 1
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Runs a single command using the runners shell
+      - name: Run Python Script
+        run: python dummyScript.py
 
       # Runs a single command using the runners shell
       - name: Run Shell Script
