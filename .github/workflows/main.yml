@@ -39,4 +39,6 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run Shell Script
-        run: echo ${{matrix.tests}}
+        run: | 
+          echo ${{matrix.tests}}
+          sleep 10s
