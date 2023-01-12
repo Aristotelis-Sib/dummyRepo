@@ -24,9 +24,6 @@ jobs:
         tests: ["test_1", "test_2"]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Runs a single command using the runners shell
-      - name: Run Python Script
-        run: python ${{ env.DEVOPS_DIR }}/dummyScript.py
 
       # Runs a single command using the runners shell
       - name: Run Shell Script
