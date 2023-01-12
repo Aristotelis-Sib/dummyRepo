@@ -26,7 +26,7 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run Python Script
-        run: python dummyScript.py
+        run: python ${{ env.DEVOPS_DIR }}/dummyScript.py
 
       # Runs a single command using the runners shell
       - name: Run Shell Script
