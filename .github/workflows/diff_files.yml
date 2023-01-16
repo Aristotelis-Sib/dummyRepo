@@ -26,8 +26,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Show Changed files
         run: | 
-          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-      
-          
-
-
+          echo git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
