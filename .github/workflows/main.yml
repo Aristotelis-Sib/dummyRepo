@@ -55,7 +55,3 @@ jobs:
         if: ${{ ! github.event.pull_request.draft }}
         run: | 
           echo Not-drafted
-
-          
-
-
