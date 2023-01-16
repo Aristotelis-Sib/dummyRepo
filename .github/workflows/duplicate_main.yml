@@ -33,14 +33,23 @@ jobs:
     needs: build 
     strategy:
       matrix:
-        tests: ["TEST_1", "TEST_2", "TEST_3", "TEST_4", "TEST_5"]
+        tests: ["TEST"]
       max-parallel: 1
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
       - name: Run Shell Script
+        if: ${{ ! github.event.pull_request.draft }}
         run: | 
+          echo first_way_of_if_statement
           echo ${{matrix.tests}}
-          echo github.event
+          echo ${{github.event}}
+          sleep 10s
+      
+      - name: Run Shell Script V2
+        if: github.event.pull_request.draft == false
+        run: | 
+          echo second_way_of_if_statement
+          echo ${{matrix.tests}}
           echo ${{github.event}}
           sleep 10s
