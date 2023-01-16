@@ -13,6 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
 concurrency:
   group: conc-test
 
@@ -36,12 +39,18 @@ jobs:
     needs: build 
     strategy:
       matrix:
-        tests: ["test_1", "test_2", "test_3", "test_4", "test_5"]
+        tests: ["test"]
       max-parallel: 1
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
       - name: Run Shell Script
+        if: ${{ ! github.event.pull_request.draft }}
         run: | 
-          echo ${{matrix.tests}}
-          sleep 8s
+          echo Drafting
+          echo pr-draft $Env:PR_NUMBER
+          
+      - name: Check if drafted
+        if: ${{ ! github.event.pull_request.draft }}
+        run: | 
+          echo Not-drafted
