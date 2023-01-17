@@ -4,11 +4,7 @@ function tests = testingPathControl(pathList)
     for iPath = 1:numOfPaths
         tests(iPath) = isPathForModelTest(pathList(iPath));
     end
-    
 end    
-
-
-
 
 function ForModelTestFlag = isPathForModelTest(path)
     if contains(path,"Apps") && ~(contains(path,fullfile("Should-Cost App","Functions")) || contains(path,"Electrical Steel Viewer App"))
@@ -21,3 +17,4 @@ function ForModelTestFlag = isPathForModelTest(path)
         ForModelTestFlag = true;
     end 
 end 
+
