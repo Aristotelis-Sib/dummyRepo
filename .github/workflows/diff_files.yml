@@ -39,4 +39,6 @@ jobs:
 
       - name: List all changed files
         run: |
-          python3 dummyScript.py ${{ steps.changed-files.outputs.all_changed_files }}
+          echo ${{ steps.changed-files.outputs.all_changed_files }}
+        
+#         python3 dummyScript.py ${{ steps.changed-files.outputs.all_changed_files }}
