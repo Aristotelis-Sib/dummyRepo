@@ -45,6 +45,6 @@ jobs:
         - name: Copy output to variable
           id: output_res
           run: |
-            echo (matlab -softwareopengl -batch "testingPathControl(['Apps']);") >> $GITHUB_OUTPUT
+            echo (matlab -softwareopengl -batch "testingPathControl(['Apps'])") >> $GITHUB_OUTPUT
         - name: Echo Result
           run: echo ${{steps.output_res.outputs.*}}
