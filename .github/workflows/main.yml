@@ -43,7 +43,8 @@ jobs:
         - name: Run Matlab Script
           run: matlab -softwareopengl -batch "testingPathControl(['Apps']);"
         - name: Copy output to variable
+          id: output_res
           run: |
-            var=$(matlab -softwareopengl -batch "testingPathControl(['Apps']);")
-            echo "Hello $var, happy to see you again"
-
+            echo (matlab -softwareopengl -batch "testingPathControl(['Apps']);") >> $GITHUB_OUTPUT
+        - name: Echo Result
+          run: echo ${{steps.output_res.outputs.*}}
