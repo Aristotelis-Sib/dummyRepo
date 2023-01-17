@@ -4,6 +4,7 @@ function tests = testingPathControl(pathList)
     for iPath = 1:numOfPaths
         tests(iPath) = isPathForModelTest(pathList(iPath));
     end
+    disp(tests)
 end    
 
 function ForModelTestFlag = isPathForModelTest(path)
