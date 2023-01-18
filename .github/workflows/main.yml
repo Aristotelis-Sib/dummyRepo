@@ -42,11 +42,11 @@ jobs:
         - name: Set up MATLAB
           uses: matlab-actions/setup-matlab@v1
         - name: Run Matlab Script
-          run: matlab -softwareopengl -batch "testingPathControl(['Apps','Apps'])"
+          run: matlab -softwareopengl -batch "testingPathControl()"
         - name: Copy output to variable
           id: output_res
           run: |
-            echo $(matlab -softwareopengl -batch "testingPathControl(['Apps','Apps'])") >> $GITHUB_OUTPUT
+            echo $(matlab -softwareopengl -batch "testingPathControl()") >> $GITHUB_OUTPUT
         - name: Echo Result
           run: |
             echo ${{steps.output_res.outputs.*}}
@@ -54,7 +54,7 @@ jobs:
         - name: Copy output to variable second way
           id: output_res_v2
           run: |
-            echo "var=$(matlab -softwareopengl -batch "testingPathControl(['Apps','Apps'])")" >> $GITHUB_OUTPUT
+            echo "var=$(matlab -softwareopengl -batch "testingPathControl()")" >> $GITHUB_OUTPUT
         - name: Echo Result v2
           run: |
             echo ${{steps.output_res_v2.outputs.var}}
