@@ -1,10 +1,10 @@
-function tests = testingPathControl(pathList)
+function tests = testingPathControl()
+    pathList = "Apps";
     numOfPaths = length(pathList);
     tests = zeros(1,numOfPaths);
     for iPath = 1:numOfPaths
         tests(iPath) = isPathForModelTest(pathList(iPath));
     end
-    disp(tests)
 end    
 
 function ForModelTestFlag = isPathForModelTest(path)
