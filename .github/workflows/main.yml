@@ -43,6 +43,10 @@ jobs:
           uses: matlab-actions/setup-matlab@v1
         - name: Run Matlab Script
           run: matlab -softwareopengl -batch "testingPathControl()"
+        - name: Echo escape test
+          run: |
+            echo "this is a \"quoted\" test"
+            
         - name: Copy output to variable
           id: output_res
           run: |
@@ -54,7 +58,7 @@ jobs:
         - name: Copy output to variable second way
           id: output_res_v2
           run: |
-            echo 'var=$(matlab -softwareopengl -batch "testingPathControl()")' >> $GITHUB_OUTPUT
+            echo "var=$(matlab -softwareopengl -batch \"testingPathControl()\")" >> $GITHUB_OUTPUT
         - name: Echo Result v2
           run: |
             echo ${{steps.output_res_v2.outputs.var}}
