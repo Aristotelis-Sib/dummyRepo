@@ -55,7 +55,7 @@ jobs:
           run: |
             echo ${{join(steps.output_res.outputs.*,'\n')}}
         - name: Check if statement
-          if: "contains(join(steps.output_res.outputs.*,'\n')}, 'B case')"
+          if: "contains(${{join(steps.output_res.outputs.*,'\n')}, 'B case')"
           run: |
             echo "it works"
             
