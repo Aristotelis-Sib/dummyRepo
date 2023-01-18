@@ -55,10 +55,13 @@ jobs:
           run: |
             echo ${{steps.output_res.outputs.*}}
             echo ${{join(steps.output_res.outputs.*,'\n')}}
-        - name: Copy output to variable second way
-          id: output_res_v2
-          run: |
-            echo var=$(matlab -softwareopengl -batch "testingPathControl()") >> $GITHUB_OUTPUT
-        - name: Echo Result v2
-          run: |
-            echo ${{steps.output_res_v2.outputs.var}}
+            echo ${{steps.output_res.outputs.(1)}}
+            echo ${{steps.output_res.outputs.[1]}}
+            
+#         - name: Copy output to variable second way
+#           id: output_res_v2
+#           run: |
+#             echo var=$(matlab -softwareopengl -batch "testingPathControl()") >> $GITHUB_OUTPUT
+#         - name: Echo Result v2
+#           run: |
+#             echo ${{steps.output_res_v2.outputs.var}}
