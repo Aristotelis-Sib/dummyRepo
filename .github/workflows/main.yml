@@ -28,7 +28,9 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: First 
-        run: echo build 
+        run: |
+          echo build 
+          echbo
   
 #   # This workflow contains a single job called "build"
 #   deploy:
