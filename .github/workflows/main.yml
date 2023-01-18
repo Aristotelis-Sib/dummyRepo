@@ -30,7 +30,6 @@ jobs:
       - name: First 
         run: |
           echo build 
-          echbo
   
   # This workflow contains a single job called "build"
   deploy:
