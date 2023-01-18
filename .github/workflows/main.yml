@@ -51,6 +51,4 @@ jobs:
         - name: Echo Result
           run: |
             echo ${{steps.output_res.outputs.Array}}
-            echo ${{steps.output_res.outputs.*}}
-            echo ${{steps.output_res.outputs.ans}}            
-            echo ${{steps.output_res.outputs}}            
+            echo ${{join(steps.output_res.outputs.*,'\n')}}
