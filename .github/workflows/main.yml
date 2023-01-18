@@ -55,8 +55,6 @@ jobs:
           run: |
             echo ${{steps.output_res.outputs.*}}
             echo ${{join(steps.output_res.outputs.*,'\n')}}
-            echo ${{steps.output_res.outputs}}
-            echo ${{steps.output_res.outputs.[1]}}
             
 #         - name: Copy output to variable second way
 #           id: output_res_v2
