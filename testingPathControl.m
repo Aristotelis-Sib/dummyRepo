@@ -1,6 +1,6 @@
 function tests = getTestsToPerform()
-    data = importdata('changed_files.txt') ;  
-    disp(data)
+    fileID = fopen('changed_files.txt');
+    disp(fscanf(fileID,'%c'));
 %     pathList = "Apps";
 %     numOfPaths = length(pathList);
 %     temp = zeros(1,numOfPaths);
