@@ -6,11 +6,13 @@ function tests = testingPathControl()
         temp(iPath) = isPathForModelTest(pathList(iPath));
     end
     
-    if temp
-        tests = "A case";
-    else
-        tests = "B case";
-    end
+%     if temp
+%         tests = "A case";
+%     else
+%         tests = "B case";
+%     end
+   
+   tests = "AB";
     
 end    
 
