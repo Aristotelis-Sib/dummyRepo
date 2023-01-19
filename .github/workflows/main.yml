@@ -71,14 +71,14 @@ jobs:
         - name: Copy output to variable
           id: output_res
           run: |
-            echo $(matlab -softwareopengl -batch "getTestsToPerform()") >> GITHUB_OUTPUT
-          shell: bash
+            echo $(matlab -softwareopengl -batch "getTestsToPerform()") | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
+#           shell: bash
 
         # Echo results
         - name: Echo Result
           run: |
             echo ${{join(steps.output_res.outputs.*,'\n')}}
-          shell: bash
+#           shell: bash
 
 
         # Check if refernce motor tests are needed
@@ -86,7 +86,7 @@ jobs:
           if: ${{join(steps.output_res.outputs.*,'\n')}} == "AB"
           run: |
             echo "If statemnet works"
-          shell: bash
+#           shell: bash
 
 
         - name: Check contains statement
