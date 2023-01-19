@@ -71,10 +71,10 @@ jobs:
 #           run: matlab -softwareopengl -batch "getTestsToPerform();"    
             
             
-#         - name: Find the changed files
-#           run: |
-#             git fetch
-#             git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} > changed_files.txt
+        - name: Find the changed files
+          run: |
+            git fetch
+            git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} > changed_files.txt
             
         - name: Find which tests should be performed
           run: matlab -softwareopengl -batch "getTestsToPerform();"    
