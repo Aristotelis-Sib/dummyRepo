@@ -61,8 +61,11 @@ jobs:
           uses: tj-actions/changed-files@v35
         # Find changed directories  
         
+        - name: Echo changed files
+          run : echo  ${{ steps.changed-files.outputs.all_changed_files }} > changed_files.txt
+
         - name: Find which tests should be performed
-          run: matlab -softwareopengl -batch "getTestsToPerform(${{ steps.changed-files.outputs.all_changed_files }});"    
+          run: matlab -softwareopengl -batch "getTestsToPerform();"    
             
 #         - name: Copy output to variable second way
 #           id: output_res_v2
