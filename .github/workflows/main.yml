@@ -61,14 +61,14 @@ jobs:
           uses: tj-actions/changed-files@v35
         # Find changed directories  
         
-        - name: Echo changed files
-          run : |
-            for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              echo $file >> changed_files.txt
-            done
+#         - name: Echo changed files
+#           run : |
+#             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+#               echo $file >> changed_files.txt
+#             done
           
-        - name: Find which tests should be performed
-          run: matlab -softwareopengl -batch "getTestsToPerform();"    
+#         - name: Find which tests should be performed
+#           run: matlab -softwareopengl -batch "getTestsToPerform();"    
             
             
         - name: Find the changed files
