@@ -56,9 +56,9 @@ jobs:
 #           run: |
 #             echo "it works"
         # Find changed directories  
-        - name: Get changed files
-          id: changed-files
-          uses: tj-actions/changed-files@v35
+#         - name: Get changed files
+#           id: changed-files
+#           uses: tj-actions/changed-files@v35
         # Find changed directories  
         
 #         - name: Echo changed files
