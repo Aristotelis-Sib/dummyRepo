@@ -1,10 +1,9 @@
-function tests = getTestsToPerform(input)
-%     lines = readlines("changed_files.txt");
-%     for iLine = 1:length(lines)
-%        disp(lines(iLine))
+function tests = getTestsToPerform()
+    lines = readlines("changed_files.txt");
+    for iLine = 1:length(lines)
+       disp(lines(iLine))
 %     end
-%     tests =1;
-    disp(input);
+%     disp(input);
     tests="ans";
 %     pathList = "Apps";
 %     numOfPaths = length(pathList);
