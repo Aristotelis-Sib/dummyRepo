@@ -89,15 +89,32 @@ jobs:
           shell: bash
   
         - name: Check if statement True
-          if: ${{(join(steps.output_res.outputs.*,'\n') == 'AB')}}
+          if: ${{(join(steps.output_res.outputs.*,'\n') == 'AB ')}}
           run: |
             echo "If statemnet works"
           shell: bash
+          
+        - name: Check if statement True
+          if: ${{(join(steps.output_res.outputs.*,'\n') == 'AB')}}
+          run: |
+            echo "If statemnet works"
+  
+        - name: Check contains statement True AB
+          if: ${{(contains(join(steps.output_res.outputs.*,'\n'),'AB'))}}
+          run: echo "Contains works"
 
-        - name: Check contains statement False
+        - name: Check contains statement True
           if: ${{(contains(join(steps.output_res.outputs.*,'\n'),'C'))}}
           run: echo "Contains works"
 
         - name: Check contains statement True
           if: ${{(contains(join(steps.output_res.outputs.*,'\n'),'A'))}}
+          run: echo "Contains works"
+          
+        - name: Check contains statement True
+          if: ${{(contains(join(steps.output_res.outputs.*,'\n'),'B'))}}
+          run: echo "Contains works"
+
+        - name: Check contains statement False
+          if: ${{(contains(join(steps.output_res.outputs.*,'\n'),'D'))}}
           run: echo "Contains works"
