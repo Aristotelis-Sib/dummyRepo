@@ -62,8 +62,11 @@ jobs:
         # Find changed directories  
         
         - name: Echo changed files
-          run : echo  ${{ steps.changed-files.outputs.all_changed_files }} > changed_files.txt
-
+          run : |
+            for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+              echo $file >> changed_files.txt
+            done
+          
         - name: Find which tests should be performed
           run: matlab -softwareopengl -batch "getTestsToPerform();"    
             
