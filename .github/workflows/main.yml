@@ -92,7 +92,7 @@ jobs:
             echo "If statemnet works"
             
         - name: Check contains statement
-          if: contains({{join(steps.output_res.outputs.*,'\n')}},"A")
+          if: contains(${{join(steps.output_res.outputs.*,'\n')}},"A")
           run: echo "Contains works"
 
 #         - name: Copy output to variable second way
