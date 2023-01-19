@@ -89,13 +89,13 @@ jobs:
           shell: bash
   
         - name: Check if statement True
-          if: ${{(join(steps.output_res.outputs.*,'\n') == 'AB ')}}
+          if: ${{(join(steps.output_res.outputs.*,'\n') == 'ABC ')}}
           run: |
             echo "If statemnet works"
           shell: bash
           
         - name: Check if statement True
-          if: ${{(join(steps.output_res.outputs.*,'\n') == 'AB')}}
+          if: ${{(join(steps.output_res.outputs.*,'\n') == 'ABC')}}
           run: |
             echo "If statemnet works"
   
