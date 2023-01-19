@@ -83,21 +83,21 @@ jobs:
 
         # Check if refernce motor tests are needed
         - name: Check if statement False
-          if: join(steps.output_res.outputs.*,'\n') == "ABCD"
+          if: join(steps.output_res.outputs.*,'\n') == 'ABCD'
           run: |
             echo "If statemnet works"
           shell: bash
   
         - name: Check if statement True
-          if: join(steps.output_res.outputs.*,'\n') == "AB"
+          if: join(steps.output_res.outputs.*,'\n') == 'AB'
           run: |
             echo "If statemnet works"
           shell: bash
 
         - name: Check contains statement False
-          if: ${{contains(join(steps.output_res.outputs.*,'\n'),"C") }}
+          if: contains(join(steps.output_res.outputs.*,'\n'),'C')
           run: echo "Contains works"
 
         - name: Check contains statement True
-          if: ${{ contains(join(steps.output_res.outputs.*,'\n'),"A") }}
+          if: contains(join(steps.output_res.outputs.*,'\n'),'A')
           run: echo "Contains works"
