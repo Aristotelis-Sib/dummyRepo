@@ -78,13 +78,17 @@ jobs:
         - name: Echo Result
           run: |
             echo ${{join(steps.output_res.outputs.*,'\n')}}
+          shell: bash
+
 
         # Check if refernce motor tests are needed
         - name: Check if statement
           if: ${{join(steps.output_res.outputs.*,'\n')}} == "AB"
           run: |
             echo "If statemnet works"
-            
+          shell: bash
+
+
         - name: Check contains statement
           if: contains(${{join(steps.output_res.outputs.*,'\n')}},"A")
           run: echo "Contains works"
