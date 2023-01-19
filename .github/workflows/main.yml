@@ -101,10 +101,10 @@ jobs:
           if: contains(${{join(steps.output_res.outputs.*,'\n')}},"A")
           run: echo "Contains works"
 
-#         - name: Copy output to variable second way
-#           id: output_res_v2
-#           run: |
-#             echo var=$(matlab -softwareopengl -batch "testingPathControl()") >> $GITHUB_OUTPUT
-#         - name: Echo Result v2
-#           run: |
-#             echo ${{steps.output_res_v2.outputs.var}}
+        - name: Copy output to variable second way
+          id: output_res_v2
+          run: |
+            echo var=$(matlab -softwareopengl -batch "getTestsToPerform()") >> $GITHUB_OUTPUT
+        - name: Echo Result v2
+          run: |
+            echo ${{steps.output_res_v2.outputs.var}}
