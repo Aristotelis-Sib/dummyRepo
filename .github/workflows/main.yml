@@ -63,6 +63,10 @@ jobs:
           run: |
             git fetch
             git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} > changed_files.txt
+        # Find changed directories  
+        - name: Find which tests should be performed
+          run: matlab -softwareopengl -batch "fixpath; getTestsToPerform();"    
+            
 #         - name: Copy output to variable second way
 #           id: output_res_v2
 #           run: |
