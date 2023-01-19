@@ -43,10 +43,7 @@ jobs:
           uses: matlab-actions/setup-matlab@v1
         - name: Run Matlab Script
           run: matlab -softwareopengl -batch "testingPathControl()"
-        - name: Echo escape test
-          run: |
-            echo "this is a '"quoted"' test"
-            
+
         - name: Copy output to variable
           id: output_res
           run: |
@@ -65,7 +62,7 @@ jobs:
             git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} > changed_files.txt
         # Find changed directories  
         - name: Find which tests should be performed
-          run: matlab -softwareopengl -batch "fixpath; getTestsToPerform();"    
+          run: matlab -softwareopengl -batch "getTestsToPerform();"    
             
 #         - name: Copy output to variable second way
 #           id: output_res_v2
