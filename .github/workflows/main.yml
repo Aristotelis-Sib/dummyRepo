@@ -105,6 +105,8 @@ jobs:
           id: output_res_v2
           run: |
             echo var=$(matlab -softwareopengl -batch "getTestsToPerform()") >> $GITHUB_OUTPUT
+          shell: bash
+        
         - name: Echo Result v2
           run: |
             echo ${{steps.output_res_v2.outputs.var}}
