@@ -5,7 +5,7 @@ function tests = getTestsToPerform()
 %        disp(lines(iLine))
 %     end
 %     disp(input);
-    tests="AB";
+    tests="ABC";
 %     pathList = "Apps";
 %     numOfPaths = length(pathList);
 %     temp = zeros(1,numOfPaths);
