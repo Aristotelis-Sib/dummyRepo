@@ -83,13 +83,13 @@ jobs:
 
         # Check if refernce motor tests are needed
         - name: Check if statement False
-          if: ${{join(steps.output_res.outputs.*,'\n') == "ABCD" }}
+          if: join(steps.output_res.outputs.*,'\n') == "ABCD"
           run: |
             echo "If statemnet works"
           shell: bash
   
         - name: Check if statement True
-          if: ${{join(steps.output_res.outputs.*,'\n') == "AB" }}
+          if: join(steps.output_res.outputs.*,'\n') == "AB"
           run: |
             echo "If statemnet works"
           shell: bash
