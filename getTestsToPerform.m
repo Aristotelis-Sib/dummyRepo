@@ -1,5 +1,6 @@
 function tests = getTestsToPerform()
     lines = readlines("changed_files.txt");
+    disp(lines);
     for iLine = 1:length(lines)
        disp(lines(iLine))
     end
