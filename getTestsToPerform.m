@@ -1,11 +1,11 @@
 function tests = getTestsToPerform()
     lines = readlines("changed_files.txt");
-    disp(lines);
-    for iLine = 1:length(lines)
-       disp(lines(iLine))
-    end
+%     disp(lines);
+%     for iLine = 1:length(lines)
+%        disp(lines(iLine))
+%     end
 %     disp(input);
-    tests="ans";
+    tests="A CASE";
 %     pathList = "Apps";
 %     numOfPaths = length(pathList);
 %     temp = zeros(1,numOfPaths);
