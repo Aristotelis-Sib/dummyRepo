@@ -2,7 +2,7 @@ function tests = getTestsToPerform()
     lines = readlines("changed_files.txt");
     for iLine = 1:length(lines)
        disp(lines(iLine))
-%     end
+    end
 %     disp(input);
     tests="ans";
 %     pathList = "Apps";
