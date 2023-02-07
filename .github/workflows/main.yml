@@ -23,11 +23,13 @@ jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: windows-latest
+    outputs:
+      output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
         - name: Checkout the running branch
           uses: actions/checkout@v2
-        - name: Set up MATLAB
-          uses: matlab-actions/setup-matlab@v1
+#         - name: Set up MATLAB
+#           uses: matlab-actions/setup-matlab@v1
 #         - name: Run Matlab Script
 #           run: matlab -softwareopengl -batch "testingPathControl()"
 
@@ -64,13 +66,17 @@ jobs:
             git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} > changed_files.txt
             
         # Find which tests should be performed and save to output variable
-        - name: Test matlab file
-          run: matlab -softwareopengl -batch "getTestsToPerform()"
+#         - name: Test matlab file
+#           run: matlab -softwareopengl -batch "getTestsToPerform()"
         
-        - name: Copy output to variable v1
-          run: echo $(matlab -softwareopengl -batch "getTestsToPerform()") >> $GITHUB_OUTPUT
-          shell: bash
+#         - name: Copy output to variable v1
+#           run: echo $(matlab -softwareopengl -batch "getTestsToPerform()") >> $GITHUB_OUTPUT
+#           shell: bash
 
+        - name: Copy output to variable v1
+          run: echo "testScriptResult" >> $GITHUB_OUTPUT
+          shell: bash
+          
         # Echo results
         - name: Echo Result
           run: |
@@ -119,11 +125,12 @@ jobs:
         - name: Copy output with Powershell core
           id: output_res_pwsh
           run: |
-            echo $(matlab -softwareopengl -batch "getTestsToPerform()") >> $env:GITHUB_OUTPUT
+            echo "output_1=testResultPowerShellCore" >> $env:GITHUB_OUTPUT
           shell: pwsh
           
         - name: Echo Result with PWSH core
           run: |
+            echo ${{steps.output_res_pwsh.outputs.output_1}}
             echo ${{join(steps.output_res_pwsh.outputs.*,'\n')}}
           shell: pwsh
           
