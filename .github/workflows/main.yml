@@ -125,7 +125,7 @@ jobs:
         - name: Copy output with Powershell core
           id: output_res_pwsh
           run: |
-            echo "output_1=testResultPowerShellCore" >> $env:GITHUB_OUTPUT
+            echo "output_1=ABC" >> $env:GITHUB_OUTPUT
           shell: pwsh
   job1:
     # The type of runner that the job will run on
@@ -137,3 +137,27 @@ jobs:
             echo ${{needs.deploy.outputs.output_1}}
           shell: pwsh
           
+        - name: Check if statement True
+          if: needs.deploy.outputs.output_1== 'ABC'
+          run: |
+            echo "If statemnet works"
+  
+        - name: Check contains statement True AB
+          if: contains(needs.deploy.outputs.output_1,'AB')
+          run: echo "Contains works"
+
+        - name: Check contains statement True A
+          if: contains(needs.deploy.outputs.output_1,'A')
+          run: echo "Contains works"
+          
+        - name: Check contains statement True B
+          if: contains(needs.deploy.outputs.output_1,'B')
+          run: echo "Contains works"
+
+        - name: Check contains statement True C
+          if: contains(needs.deploy.outputs.output_1,'C')
+          run: echo "Contains works"
+
+        - name: Check contains statement False
+          if: contains(needs.deploy.outputs.output_1,'D')
+          run: echo "Contains works"
