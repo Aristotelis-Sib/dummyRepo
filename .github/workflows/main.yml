@@ -127,10 +127,13 @@ jobs:
           run: |
             echo "output_1=testResultPowerShellCore" >> $env:GITHUB_OUTPUT
           shell: pwsh
-          
+  job1:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    needs: deploy
+    steps:
         - name: Echo Result with PWSH core
           run: |
-            echo ${{steps.output_res_pwsh.outputs.output_1}}
-            echo ${{join(steps.output_res_pwsh.outputs.*,'\n')}}
+            echo ${{needs.deploy.outputs.output_1}}
           shell: pwsh
           
