@@ -74,7 +74,7 @@ jobs:
 #           shell: bash
 
         - name: Copy output to variable v1
-          run: echo "testScriptResult" >> $GITHUB_OUTPUT
+          run: echo "output_1=testScriptResult" >> $GITHUB_OUTPUT
           shell: bash
           
         # Echo results
