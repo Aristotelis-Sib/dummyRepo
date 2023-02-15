@@ -33,6 +33,7 @@ jobs:
           id: output_res_pwsh
           run: |
             echo "output_1=ABC" >> $env:GITHUB_OUTPUT
+            echo $env:GITHUB_OUTPUT
           shell: pwsh
   job1:
     # The type of runner that the job will run on
