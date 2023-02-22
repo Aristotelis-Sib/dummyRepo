@@ -37,12 +37,6 @@ jobs:
             echo "output_1=ABC" >> $env:GITHUB_OUTPUT
             echo $env:GITHUB_OUTPUT
           shell: pwsh
-          
-        - name: Copy output with Powershell core
-          run: |
-            echo var=$(matlab -softwareopengl -batch "getTestsToPerform()")
-            echo $var
-          shell: pwsh
       
         - name: Copy output with Powershell core
           run: |
