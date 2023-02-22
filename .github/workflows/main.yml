@@ -21,7 +21,7 @@ jobs:
   # This workflow contains a single job called "build"
   deploy:
     # The type of runner that the job will run on
-    runs-on: [self-hosted, Old-Runner]
+    runs-on: windows-latest
     outputs:
       output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
@@ -51,7 +51,7 @@ jobs:
           shell: pwsh
   job1:
     # The type of runner that the job will run on
-    runs-on: [self-hosted, Old-Runner]
+    runs-on: windows-latest
     needs: deploy
     steps:
         - name: Echo Result with PWSH core
