@@ -4,9 +4,12 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "main" branc
   push:
     branches: [ "main" ]
+    tags:
+      - '*'
+      
   pull_request:
     branches: [ "main" ]
 
@@ -38,6 +41,11 @@ jobs:
             echo $env:GITHUB_OUTPUT
             echo ${{github.ref}}
           shell: pwsh
+          
+        - name: Should not run step
+          if: "!startsWith(github.ref, 'refs/heads/main')"
+          run: |
+            echo "Step runed"
       
 #         - name: Copy output with Powershell core
 #           run: |
