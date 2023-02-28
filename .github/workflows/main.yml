@@ -10,9 +10,17 @@ on:
       runPM216:
         description: 'Run for PM216'
         type: boolean
-        required: true
+        required: false
       runPM291:
         description: 'Run for PM291'
+        type: boolean
+        required: false
+      runPM292:
+        description: 'Run for PM292'
+        type: boolean
+        required: false
+      runPM293:
+        description: 'Run for PM293'
         type: boolean
         required: false
 
@@ -46,7 +54,7 @@ jobs:
           run: |
             echo  ${{ github.event.inputs}}
             echo  ${{ github.event.inputs.*}}
-            echo  ${{ join(github.event.inputs.*,'\n') }}
+            echo  ${{ join(github.event.inputs.*,' ') }}
         
             
         - name: Should not run step
