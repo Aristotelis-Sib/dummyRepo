@@ -31,7 +31,7 @@ env:
 jobs:
   # This workflow contains a single job called "build"
   deploy:
-    if: "!contains(join(github.event.inputs.*,' '),'true')"
+#     if: "!contains(join(github.event.inputs.*,' '),'true')"
     # The type of runner that the job will run on
     runs-on: windows-latest
     outputs:
@@ -72,7 +72,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     needs: deploy
-    if: contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1 == 'ABC' 
+    if: contains(join(github.event.inputs.*,' '),'true')
     steps:
         - name: Echo Result with PWSH core
           run: |
