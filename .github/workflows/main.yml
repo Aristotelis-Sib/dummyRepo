@@ -4,17 +4,17 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branc
-  push:
-    branches: [ "main" ]
-    tags:
-      - '*'
-      
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Define the inputs of this Workflow
+    inputs:
+      runPM216:
+        description: 'Run for PM216'
+        type: boolean
+        required: true
+      runPM291:
+        description: 'Run for PM291'
+        type: boolean
+        required: false
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -41,7 +41,14 @@ jobs:
             echo $env:GITHUB_OUTPUT
             echo ${{github.ref}}
           shell: pwsh
-          
+              
+        - name: Inputs test
+          run: |
+            echo  ${{ github.event.inputs}}
+            echo  ${{ github.event.inputs.*}}
+            echo  ${{ join(github.event.inputs.*,'\n') }}
+        
+            
         - name: Should not run step
           if: "!startsWith(github.ref, 'refs/heads/main')"
           run: |
