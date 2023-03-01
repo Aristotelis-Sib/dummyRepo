@@ -45,11 +45,11 @@ jobs:
     outputs:
       output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
-        - name: Checkout the running branch
-          uses: actions/checkout@v2
+#         - name: Checkout the running branch
+#           uses: actions/checkout@v2
 
-        - name: Set up MATLAB
-          uses: matlab-actions/setup-matlab@v1
+#         - name: Set up MATLAB
+#           uses: matlab-actions/setup-matlab@v1
         
 #         - name: Copy output with Powershell core
 #           id: output_res_pwsh
@@ -64,9 +64,14 @@ jobs:
             echo  ${{github.event_name}}
             $var = "${{ toJSON(github.event.inputs) }}"
             echo $var
-            matlab -softwareopengl -batch "captureReturn('$var')"
             $var = ${{ toJSON(github.event.inputs) }}
-            matlab -softwareopengl -batch "captureReturn('$var')"
+            echo $var
+      
+#         - name: Inputs test v2
+#           run: |
+#             $var = "${{ toJSON(github.event.inputs) }}"
+#             echo $var
+#             matlab -softwareopengl -batch "captureReturn('$var')"
 
 
         - name: Output Inputs
