@@ -61,11 +61,15 @@ jobs:
               
         - name: Inputs test
           run: |
-            echo  ${{github.event_name}}
             $var = "${{ toJSON(github.event.inputs) }}"
             echo $var
+         
+        - name: Inputs test v2
+          run: |
             $var = ${{ toJSON(github.event.inputs) }}
             echo $var
+      
+      
       
 #         - name: Inputs test v2
 #           run: |
