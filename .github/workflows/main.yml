@@ -25,9 +25,11 @@ on:
         required: false
       runPM293:
         description: 'Run for PM293'
+        required: false
         type: boolean
       runCluster:
         description: 'Run Cluster Test'
+        required: false
         type: boolean  
       
 env:
