@@ -11,21 +11,21 @@ on:
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
-      input1:
-        description: Input 1 description
+      runPM216:
+        description: 'Run for PM216'
         type: boolean
-      input2:
-        description: Input 2 description
+        required: false
+      runPM291:
+        description: 'Run for PM291'
         type: boolean
-      input3:
-        description: Input 3 description
+        required: false
+      runPM292:
+        description: 'Run for PM292'
         type: boolean
-      requiredInputs:
-        description: At least one of input1 or input2 is required
-        anyOf:
-          - required: input1
-          - required: input2
-          - required: input3
+        required: false
+      runPM293:
+        description: 'Run for PM293'
+        type: boolean
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
