@@ -4,6 +4,10 @@ name: CI
 
 # Controls when the workflow will run
 on:
+  push:
+    branches:
+      - main
+  
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
@@ -53,6 +57,7 @@ jobs:
               
         - name: Inputs test
           run: |
+            echo  ${{github.event_name}}
             echo  ${{ join(github.event.inputs.*,' ') }}        
             
         - name: Should not run step
