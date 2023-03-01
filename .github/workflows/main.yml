@@ -58,16 +58,10 @@ jobs:
 #             echo $env:GITHUB_OUTPUT
 #             echo ${{github.ref}}
 #           shell: pwsh
-              
-        - name: Inputs test v2
-          run: |
-            $var = ${{ toJSON(github.event.inputs) }}
-            echo $var
-      
+            
         - name: Inputs test
           run: |
             $var = "${{ toJSON(github.event.inputs) }}"
-            echo $var
 
 #         - name: Inputs test v2
 #           run: |
