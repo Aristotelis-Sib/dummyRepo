@@ -62,9 +62,12 @@ jobs:
         - name: Inputs test
           run: |
             echo  ${{github.event_name}}
-            $var = ${{ toJSON(github.event.inputs) }}
+            $var = "${{ toJSON(github.event.inputs) }}"
             echo $var
-            matlab -softwareopengl -batch "captureReturn.m('$var')"
+            matlab -softwareopengl -batch "captureReturn('$var')"
+            $var = ${{ toJSON(github.event.inputs) }}
+            matlab -softwareopengl -batch "captureReturn('$var')"
+
 
         - name: Output Inputs
           run: echo "${{ toJSON(github.event.inputs) }}"
