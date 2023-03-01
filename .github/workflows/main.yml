@@ -72,17 +72,15 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     needs: deploy
-    if: always() && (contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'DDDDD' )
+    if: ( success() || needs.deploy.result == 'skipped') && ( contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'ABC' )
+#     if: always() && (contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'DDDDD' )
     steps:
-        - name: Echo Result with PWSH core
-          run: |
-            echo ${{needs.deploy.outputs.output_1}}
-          shell: pwsh
-          
+
         - name: Check if statement True
           if: needs.deploy.outputs.output_1== 'ABC'
           run: |
-            echo "If statemnet works"
+            echo "If statemnet works"\
+            sleep 2m
             
         - name: Check if statement False
           if: needs.deploy.outputs.output_1== 'ABCD'
@@ -93,18 +91,3 @@ jobs:
           if: contains(needs.deploy.outputs.output_1,'AB')
           run: echo "Contains works"
 
-        - name: Check contains statement True A
-          if: contains(needs.deploy.outputs.output_1,'A')
-          run: echo "Contains works"
-          
-        - name: Check contains statement True B
-          if: contains(needs.deploy.outputs.output_1,'B')
-          run: echo "Contains works"
-
-        - name: Check contains statement True C
-          if: contains(needs.deploy.outputs.output_1,'C')
-          run: echo "Contains works"
-
-        - name: Check contains statement False
-          if: contains(needs.deploy.outputs.output_1,'D')
-          run: echo "Contains works"
