@@ -53,10 +53,7 @@ jobs:
               
         - name: Inputs test
           run: |
-            echo  ${{ github.event.inputs}}
-            echo  ${{ github.event.inputs.*}}
-            echo  ${{ join(github.event.inputs.*,' ') }}
-        
+            echo  ${{ join(github.event.inputs.*,' ') }}        
             
         - name: Should not run step
           if: "!startsWith(github.ref, 'refs/heads/main')"
@@ -72,10 +69,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     needs: deploy
-    if: ( success() || needs.deploy.result == 'skipped') && ( contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'ddd' )
-#     if: always() && (contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'DDDDD' )
+    if: ( success() && needs.deploy.outputs.output_1== 'ddd' ) || ( needs.deploy.result == 'skipped' && contains(join(github.event.inputs.*,' '),'true'))
     steps:
-
         - name: Check if statement True
           if: needs.deploy.outputs.output_1== 'ABC'
           run: |
