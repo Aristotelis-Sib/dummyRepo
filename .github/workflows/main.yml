@@ -79,9 +79,10 @@ jobs:
         - name: Check if statement True
           if: needs.deploy.outputs.output_1== 'ABC'
           run: |
-            echo "If statemnet works"\
+            echo "If statemnet works"
             sleep 2m
-            
+            shell: bash
+
         - name: Check if statement False
           if: needs.deploy.outputs.output_1== 'ABCD'
           run: |
