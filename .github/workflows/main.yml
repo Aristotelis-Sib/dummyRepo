@@ -56,7 +56,7 @@ jobs:
         - name: Inputs test
           run: |
             echo  ${{github.event_name}}
-            $var = ${{join(github.event.inputs.*,',') }}        
+            $var = ${{"join(github.event.inputs.*,',')"}}        
             echo  $var
             
         - name: Should not run step
