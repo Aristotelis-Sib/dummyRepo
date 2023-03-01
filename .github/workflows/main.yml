@@ -11,23 +11,21 @@ on:
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
-      runPM216:
-        description: 'Run for PM216'
+      input1:
+        description: Input 1 description
         type: boolean
-        required: false
-      runPM291:
-        description: 'Run for PM291'
+      input2:
+        description: Input 2 description
         type: boolean
-        required: false
-      runPM292:
-        description: 'Run for PM292'
+      input3:
+        description: Input 3 description
         type: boolean
-        required: false
-      runPM293:
-        description: 'Run for PM293'
-        type: boolean
-        required: false
-
+      requiredInputs:
+        description: At least one of input1 or input2 is required
+        anyOf:
+          - required: input1
+          - required: input2
+          - required: input3
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +56,8 @@ jobs:
         - name: Inputs test
           run: |
             echo  ${{github.event_name}}
-            echo  ${{ join(github.event.inputs.*,' ') }}        
+            echo  ${{github.event.inputs.*}}
+            echo  ${{join(github.event.inputs.*,',') }}        
             
         - name: Should not run step
           if: "!startsWith(github.ref, 'refs/heads/main')"
