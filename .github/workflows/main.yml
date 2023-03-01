@@ -67,6 +67,8 @@ jobs:
             $var2 = "${{join(github.event.inputs.*.description,',')}}" 
             echo  $var
             
+        - name: Output Inputs
+          run: echo "${{ toJSON(github.event.inputs) }}"
 #         - name: Should not run step
 #           if: "!startsWith(github.ref, 'refs/heads/main')"
 #           run: |
