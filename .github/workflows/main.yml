@@ -72,7 +72,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     needs: deploy
-    if: ( success() || needs.deploy.result == 'skipped') && ( contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'ABC' )
+    if: ( success() || needs.deploy.result == 'skipped') && ( contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'ddd' )
 #     if: always() && (contains(join(github.event.inputs.*,' '),'true') || needs.deploy.outputs.output_1== 'DDDDD' )
     steps:
 
