@@ -63,6 +63,7 @@ jobs:
           run: |
             echo  ${{github.event_name}}
             $var = "${{join(github.event.inputs.*,',')}}" 
+            echo ${{github.event.inputs.*.description}}
             $var2 = "${{join(github.event.inputs.*.description,',')}}" 
             echo  $var
             
