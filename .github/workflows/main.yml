@@ -4,9 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
-#   push:
-#     branches:
-#       - main
+  push:
+    branches:
+      - main
   
   workflow_dispatch:
   # Define the inputs of this Workflow
@@ -64,7 +64,8 @@ jobs:
             $var = '${{ toJSON(github.event.inputs) }}'
             echo "break"
             matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
-              
+            matlab -softwareopengl -batch "tmp=string('testDisplay');disp(tmp)"         
+          shell: powershell
 #         - name: Inputs test v2
 #           run: |
 #             $var = "${{ toJSON(github.event.inputs) }}"
