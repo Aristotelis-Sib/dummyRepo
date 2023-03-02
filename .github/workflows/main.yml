@@ -63,8 +63,10 @@ jobs:
           run: |
             $temp = '${{ toJSON(github.event.inputs) }}'
             $var  = $temp -replace '{' -replace '}'
+            $var  = $var -replace '"'
             echo $var
             $var = $var.replace(': ','-')
+            $var = "$var"
             echo $var 
             matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
 #            echo "break"
