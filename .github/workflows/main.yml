@@ -61,7 +61,7 @@ jobs:
             
         - name: Inputs test
           run: |
-            $var = ${{ github.event.inputs }}
+            $var = ${{ toJSON(github.event.inputs) }}
             echo "break"
             matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
             matlab -softwareopengl -batch "tmp=string('testDisplay');disp(tmp)"         
