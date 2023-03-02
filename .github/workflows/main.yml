@@ -66,10 +66,9 @@ jobs:
             $temp = $temp.ToString()
             $var  = $temp -replace '{' -replace '}'
             $var  = $var -replace '"'
-            echo $var
             $var = $var.replace(': ','-')
             echo $var 
-            matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
+            matlab -softwareopengl -batch "tmp=string($var.ToString());disp(tmp)"
 #            echo "break"
 #            $var2 = "{test:true}"
 #            matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
