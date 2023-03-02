@@ -63,8 +63,13 @@ jobs:
           run: |
             $var = '${{ toJSON(github.event.inputs) }}'
             echo "break"
-            matlab -softwareopengl -batch "tmp=string($var2);disp(tmp)"
+            matlab -softwareopengl -batch "tmp=string($var);disp(tmp)"
             matlab -softwareopengl -batch "tmp=string('testDisplay');disp(tmp)"         
+            echo "break"
+            $var2 = "test"
+            matlab -softwareopengl -batch "tmp=string($var2);disp(tmp)"
+          
+          
           shell: powershell
 #         - name: Inputs test v2
 #           run: |
