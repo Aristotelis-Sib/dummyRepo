@@ -62,7 +62,7 @@ jobs:
         - name: Inputs test
           run: |
             $var = '${{ toJSON(github.event.inputs) }}'
-            echo $var
+            echo "break"
             matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
               
 #         - name: Inputs test v2
@@ -70,8 +70,6 @@ jobs:
 #             $var = "${{ toJSON(github.event.inputs) }}"
 #             echo $var
 
-        - name: Output Inputs
-          run: echo "${{ toJSON(github.event.inputs) }}"
 #         - name: Should not run step
 #           if: "!startsWith(github.ref, 'refs/heads/main')"
 #           run: |
