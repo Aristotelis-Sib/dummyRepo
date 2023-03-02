@@ -41,7 +41,7 @@ jobs:
   deploy:
 #     if: "!contains(join(github.event.inputs.*,' '),'true')"
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: [self-hosted, my-laptop]
     outputs:
       output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
