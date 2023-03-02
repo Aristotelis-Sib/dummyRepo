@@ -48,8 +48,8 @@ jobs:
 #         - name: Checkout the running branch
 #           uses: actions/checkout@v2
 
-        - name: Set up MATLAB
-          uses: matlab-actions/setup-matlab@v1
+#         - name: Set up MATLAB
+#           uses: matlab-actions/setup-matlab@v1
         
 #         - name: Copy output with Powershell core
 #           id: output_res_pwsh
