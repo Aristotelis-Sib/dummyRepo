@@ -68,7 +68,6 @@ jobs:
             $var  = $var -replace '"'
             echo $var
             $var = $var.replace(': ','-')
-            $var = !!str $var
             echo $var 
             matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
 #            echo "break"
