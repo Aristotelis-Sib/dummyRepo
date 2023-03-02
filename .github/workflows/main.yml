@@ -64,7 +64,6 @@ jobs:
             $var = '${{ toJSON(github.event.inputs) }}'
             echo $var
             matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
-            matlab -softwareopengl -batch "tmp=string('$var2');captureReturn(tmp)"
               
 #         - name: Inputs test v2
 #           run: |
