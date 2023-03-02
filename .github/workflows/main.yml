@@ -61,8 +61,9 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp = '${{ ToString(github.event.inputs) }}'
+            $temp = '${{ toJSON(github.event.inputs) }}'
             echo $temp
+            $temp = $temp.ToString()
             $var  = $temp -replace '{' -replace '}'
             $var  = $var -replace '"'
             echo $var
