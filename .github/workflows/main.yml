@@ -62,7 +62,8 @@ jobs:
         - name: Inputs test
           run: |
             $var3 = '${{ toJSON(github.event.inputs) }}'
-            $var = join($var3,',')
+            echo $var3.GetType()
+            $var = join('$var3',',')
             echo $var 
             echo "break"
             matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
