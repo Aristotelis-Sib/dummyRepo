@@ -61,7 +61,8 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp = '${{ github.event.inputs }}'
+            $temp = ${{ github.event.inputs }}
+            echo $temp.GetType()
             echo $temp
             echo $temp.ToString()
 #            $temp = $temp.ToString()
