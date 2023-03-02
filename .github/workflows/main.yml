@@ -61,16 +61,17 @@ jobs:
             
         - name: Inputs test
           run: |
-            $var3 = '${{ toJSON(github.event.inputs) }}'
-            echo $var3.GetType()
-            $var = join('$var3',',')
+            $temp = '${{ toJSON(github.event.inputs) }}'
+            $var  = $temp -replace '{' -replace '}'
+            echo $var
+            $var = $var.replace(':','-')
             echo $var 
             echo "break"
-            matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
-            matlab -softwareopengl -batch "tmp=string('testDisplay');disp(tmp)"         
-            echo "break"
-            $var2 = "{test:true}"
-            matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
+#            matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
+#            matlab -softwareopengl -batch "tmp=string('testDisplay');disp(tmp)"         
+#            echo "break"
+#            $var2 = "{test:true}"
+#            matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
           
           
           shell: powershell
