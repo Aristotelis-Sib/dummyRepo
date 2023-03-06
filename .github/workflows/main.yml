@@ -63,8 +63,8 @@ jobs:
           run: |
             $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON
             echo $temp4
-            $temp3 = $temp4
-            matlab -softwareopengl -batch "tmp=string('$temp3');disp(tmp)"
+            $string = ($temp4 | ConvertTo-Csv -NoTypeInformation) | Out-String
+            matlab -softwareopengl -batch "tmp=string('$string');disp(tmp)"
             
             echo "here1"
             $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
