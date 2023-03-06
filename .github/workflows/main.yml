@@ -70,6 +70,8 @@ jobs:
             echo "here1"
             $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
             echo $temp
+            echo $temp.GetType()
+
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
 #            $var  = $var -replace '"'
