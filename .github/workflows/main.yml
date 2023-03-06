@@ -61,12 +61,6 @@ jobs:
             
         - name: Inputs test
           run: |
-#            $temp = '${{ github.event.inputs.runPM216 }}'
-#            $temp2 = '${{ github.event.inputs.runPM291 }}'
-#            echo $temp
-#            echo $temp2
-#            $temp3 = $temp + $temp2
-#            echo $temp3
             $temp3 =  ${{ github.event.inputs }}
             echo $temp3.GetType()
             echo $temp3[1]
