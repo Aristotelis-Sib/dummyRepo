@@ -61,11 +61,13 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp = '${{ github.event.inputs }}'
-            echo $temp.GetType()
+            $temp = '${{ github.event.inputs.runPM216 }}'
+            $temp2 = '${{ github.event.inputs.runPM291 }}'
             echo $temp
-            $temp = $temp.replace('"',''')
-            echo $temp.ToString()
+            echo $temp2
+            $temp3 = $temp + $temp2
+            echo $temp3
+            
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
 #            $var  = $var -replace '"'
