@@ -68,8 +68,8 @@ jobs:
             echo "here1"
             $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
             echo $temp
-            $temp = $temp.Remove(0,1) 
-            matlab -softwareopengl -batch "tmp=string('$temp');disp(tmp)"
+            $temp2 = $temp 
+            matlab -softwareopengl -batch "tmp=string('$temp2');disp(tmp)"
 
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
