@@ -61,7 +61,7 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv
+            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
             echo $temp4
             $string = $temp4
             echo "matlab pre"
