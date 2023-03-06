@@ -64,11 +64,10 @@ jobs:
             $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON
             echo $temp4
             echo "here"
-            $temp = $temp4.ToString()
-            echo $temp
+            $string = $temp4 | Out-String
+            echo $string
             echo "here1"
-            $temp2 = '$temp4'
-            echo $temp2
+
             
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
