@@ -61,10 +61,10 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON
+            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv
             echo $temp4
-            $string = $temp4 | ConvertTo-Csv -NoTypeInformation
-            echo $string
+            $string = $temp4
+            
             matlab -softwareopengl -batch "tmp=string('$string');disp(tmp)"
             
             echo "here1"
