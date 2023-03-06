@@ -68,7 +68,7 @@ jobs:
             $temp3 = $temp + $temp2
             echo $temp3
 
-            foreach($x in ${{ toJSON(github.event.inputs) }}){
+            foreach($x in ${{ github.event.inputs }}){
                 echo $x
             }
             
