@@ -61,8 +61,9 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp4 =  ${{ toJSON(github.event.inputs) }} | ConvertFrom-JSON
+            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON
             echo $temp4
+            $temp4 = $temp4.Remove(0,1) 
             matlab -softwareopengl -batch "tmp=string('$temp4');disp(tmp)"
             
             
