@@ -67,11 +67,10 @@ jobs:
             echo $temp2
             $temp3 = $temp + $temp2
             echo $temp3
-
-            foreach($x in ${{ github.event.inputs }}){
-                echo $x
-            }
-            
+            for x in ${{ github.event.inputs }}; do
+              echo $x
+            done
+               
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
 #            $var  = $var -replace '"'
