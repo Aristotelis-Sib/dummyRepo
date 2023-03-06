@@ -70,7 +70,7 @@ jobs:
             echo "here1"
             $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
             echo $temp
-            echo $temp.GetType()
+            matlab -softwareopengl -batch "tmp=string('$temp');disp(tmp)"
 
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
@@ -81,7 +81,6 @@ jobs:
 #            matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
 #            echo "break"
 #            $var2 = "{test:true}"
-#            matlab -softwareopengl -batch "tmp=string('$var2');disp(tmp)"
           
           
           shell: powershell
