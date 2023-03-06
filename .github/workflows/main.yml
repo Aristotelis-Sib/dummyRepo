@@ -68,8 +68,11 @@ jobs:
             $temp3 = $temp + $temp2
             echo $temp3
             
-            $temp4 = '${{ toString(github.event.inputs) }}'
+            $temp4 = '${{ toJSON(github.event.inputs) }}'
             echo $temp4
+            foreach($x in $temp4){
+                echo $x
+            }
             
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
