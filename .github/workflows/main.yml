@@ -61,9 +61,6 @@ jobs:
             
         - name: Inputs test
           run: |
-            $inputsAsCSV         = '${{ github.event.inputs }}' | ConvertTo-Csv -NoTypeInformation
-            echo $inputsAsCSV
-          
             $inputsAsCSV         = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
             $inputNamesAndValues = $inputsAsCSV -split "`r`n"
             $inputNames          = $inputNamesAndValues[0]
