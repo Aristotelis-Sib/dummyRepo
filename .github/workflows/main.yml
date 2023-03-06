@@ -80,7 +80,7 @@ jobs:
             }
             echo $val
             echo "matlab pre"
-            matlab -softwareopengl -batch "tmp=string('$string');disp(tmp)"
+            matlab -softwareopengl -batch "tmp=string('$val');disp(tmp)"
             echo "matlab post"
             
 #            $temp = $temp.ToString()
