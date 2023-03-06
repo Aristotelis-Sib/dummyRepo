@@ -68,6 +68,9 @@ jobs:
             $temp3 = $temp + $temp2
             echo $temp3
             
+            $temp4 = '${{ toString(github.event.inputs) }}'
+            echo $temp4
+            
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
 #            $var  = $var -replace '"'
