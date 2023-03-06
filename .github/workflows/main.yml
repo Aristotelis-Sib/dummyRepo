@@ -61,14 +61,14 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON
+            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON -Compress
             echo $temp4
             echo "here"
             $string = $temp4 | Out-String
             echo $string
             echo "here1"
-
-            
+            $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
+            echo $temp
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
 #            $var  = $var -replace '"'
