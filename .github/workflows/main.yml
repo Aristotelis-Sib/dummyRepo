@@ -66,6 +66,7 @@ jobs:
             $inputNames          = $inputNamesAndValues[0]
             $inputNamesList      = $inputNames.split(",")
             $inputValues         = $inputNamesAndValues[1]
+            echo $inputValues
             $inputValuesList     = $inputValues.split(",")
             $matlabArgumentInput         = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
