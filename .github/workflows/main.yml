@@ -79,8 +79,10 @@ jobs:
             $inputsJSON2String = [System.Management.Automation.LanguagePrimitives]::ConvertTo($inputsAsJSON, [string])
             echo $inputsJSON2String
             echo $inputsJSON2String.Length-1
-            
-            $inputsJSON2String = $inputsJSON2String.Substring(0,$inputsJSON2String.Length-1)
+            $inputsJSON2String = $inputsJSON2String.Substring(0,($inputsJSON2String.Length-1))
+            echo $inputsJSON2String
+            $inputsJSON2String = $inputsJSON2String.Substring(2,$inputsJSON2String.Length)
+            echo $inputsJSON2String
             matlab -softwareopengl -batch "tmp=string('$inputsJSON2String');disp(tmp)"
 
           shell: powershell
