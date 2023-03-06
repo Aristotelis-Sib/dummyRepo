@@ -67,16 +67,16 @@ jobs:
             $inputValuesList         = $inputNamesAndValues[1].split(",")
             $matlabArgumentInput     = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
-              $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ":" + $inputValuesList[$i] + ","
+              $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + "=" + $inputValuesList[$i] + ","
             }
             $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
-            $matlabArgumentInput = $matlabArgumentInput.replace("; ",",")
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
     
             echo "2ND WAY"
             $inputsAsJSON        = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON 
             $inputsJSON2String = [System.Management.Automation.LanguagePrimitives]::ConvertTo($inputsAsJSON, [string])
             $inputsJSON2String = $inputsJSON2String.Substring(2,($inputsJSON2String.Length-3))
+            $inputsJSON2String = $inputsJSON2String.replace("; ",",")
             matlab -softwareopengl -batch "tmp=string('$inputsJSON2String');disp(tmp)"
 
           shell: powershell
