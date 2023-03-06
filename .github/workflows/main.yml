@@ -73,7 +73,13 @@ jobs:
             }
             $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
-        
+    
+            echo "2ND WAY"
+            $inputsAsJSON        = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON 
+            $inputsJSON2String = [System.Management.Automation.LanguagePrimitives]::ConvertTo($inputsAsJSON, [string])
+            $inputsJSON2String = $inputsJSON2String.Substring(2,$inputsJSON2String.Length-1)
+            matlab -softwareopengl -batch "tmp=string('$inputsJSON2String');disp(tmp)"
+
           shell: powershell
 #         - name: Inputs test v2
 #           run: |
