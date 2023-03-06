@@ -63,14 +63,12 @@ jobs:
           run: |
             $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON
             echo $temp4
-            $temp4 = $temp4.Remove(0,1) 
             matlab -softwareopengl -batch "tmp=string('$temp4');disp(tmp)"
-            
-            
             
             echo "here1"
             $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
             echo $temp
+            $temp = $temp.Remove(0,1) 
             matlab -softwareopengl -batch "tmp=string('$temp');disp(tmp)"
 
 #            $temp = $temp.ToString()
