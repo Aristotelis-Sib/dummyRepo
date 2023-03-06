@@ -70,6 +70,7 @@ jobs:
               $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ":" + $inputValuesList[$i] + ","
             }
             $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+            $matlabArgumentInput = $matlabArgumentInput.replace("; ",",")
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
     
             echo "2ND WAY"
