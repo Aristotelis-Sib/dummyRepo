@@ -61,41 +61,19 @@ jobs:
             
         - name: Inputs test
           run: |
-            $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertTo-Csv -NoTypeInformation
-            echo $temp4
-            $string = $temp4 
-            
-            $result = $string -split "`r`n"
-            
-            $val1 = $result[0]
-            $val2 = $result[1]
-            echo "Val 1 is:"
-            echo $val1
-            echo "Val 2 is:"
-            echo $val2
-            
-            $val1List = $val1.split(",")
-            $val2List = $val2.split(",")
-            $val = ""
-            for($i=0; $i -lt $val1List.Length; $i++){
-              $val = $val + $val1List[$i] +":"+$val2List[$i] + ","
+            $inputsAsCSV         = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
+            $inputNamesAndValues = $string -split "`r`n"
+            $inputNames          = $inputNamesAndValues[0]
+            $inputNamesList      = $inputNames.split(",")
+            $inputValues         = $inputNamesAndValues[1]
+            $inputValuesList     = $inputValues.split(",")
+            $matlabArgumentInput         = ""
+            for($i=0; $i -lt $inputNamesList.Length; $i++){
+              $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] +":"+$inputValuesList[$i] + ","
             }
-            echo $val
-            echo "matlab pre"
-            matlab -softwareopengl -batch "tmp=string('$val');disp(tmp)"
-            echo "matlab post"
-            
-#            $temp = $temp.ToString()
-#            $var  = $temp -replace '{' -replace '}'
-#            $var  = $var -replace '"'
-#            $var = $var.replace(': ','-')
-#            $var = $var.ToString()
-#            echo $var 
-#            matlab -softwareopengl -batch "tmp=string('$var');disp(tmp)"
-#            echo "break"
-#            $var2 = "{test:true}"
-          
-          
+            $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+            matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
+        
           shell: powershell
 #         - name: Inputs test v2
 #           run: |
