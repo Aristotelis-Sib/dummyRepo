@@ -64,22 +64,25 @@ jobs:
             $temp4 =  '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
             $string = $temp4 
             $result = $string -split "`r`n"
+            
             $val1 = $result[0]
             $val2 = $result[1]
             echo "Val 1 is:"
             echo $val1
             echo "Val 2 is:"
             echo $val2
+            
+            $val1List = $val1.split(",")
+            $val2List = $val2.split(",")
+            $val = ""
+            for($i=0; $i -lt $val1List.Length; $i++){
+              $val = $val + $val1List[$i] +":"+$val2List[$i] + ","
+            }
+            echo $val
             echo "matlab pre"
             matlab -softwareopengl -batch "tmp=string('$string');disp(tmp)"
             echo "matlab post"
             
-            echo "here1"
-            $temp = [System.Management.Automation.LanguagePrimitives]::ConvertTo($temp4, [string])
-            echo $temp
-            $temp2 = $temp 
-            matlab -softwareopengl -batch "tmp=string('$temp2');disp(tmp)"
-
 #            $temp = $temp.ToString()
 #            $var  = $temp -replace '{' -replace '}'
 #            $var  = $var -replace '"'
