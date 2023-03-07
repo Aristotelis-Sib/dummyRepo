@@ -67,8 +67,11 @@ jobs:
             $inputValuesList         = $inputNamesAndValues[1].split(",")
             $matlabArgumentInput     = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
-              $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + "=" + $inputValuesList[$i] + ","
+              if ($inputValuesList[$i] -eq 'true' ){
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
+              }  
             }
+            echo $matlabArgumentInput
             $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
     
