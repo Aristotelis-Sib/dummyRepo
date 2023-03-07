@@ -68,7 +68,7 @@ jobs:
             $matlabArgumentInput     = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
               echo $inputValuesList[$i] 
-              if ($inputValuesList[$i] -eq 'true' ){
+              if ($inputValuesList[$i] -eq "true" ){
                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
               }  
             }
