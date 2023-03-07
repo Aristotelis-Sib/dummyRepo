@@ -75,7 +75,6 @@ jobs:
                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
               }  
             }
-            echo $matlabArgumentInput
             if ($matlabArgumentInput.Length -eq 0){
                $matlabArgumentInput = $inputNamesAndValues[0]
             }
