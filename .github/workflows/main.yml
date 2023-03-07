@@ -75,7 +75,12 @@ jobs:
                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
               }  
             }
-            $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+            if ($matlabArgumentInput -match ""){
+               $matlabArgumentInput = $inputNamesAndValues[0]
+            }
+            else{
+              $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+            }
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
           shell: powershell
           
