@@ -14,23 +14,23 @@ on:
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
-      runPM216:
+      motorTests-PM216:
         description: 'Run for PM216'
         type: boolean
         required: false
-      runPM291:
+      motorTests-PM291:
         description: 'Run for PM291'
         type: boolean
         required: false
-      runPM292:
+      motorTests-PM292:
         description: 'Run for PM292'
         type: boolean
         required: false
-      runPM293:
+      motorTests-PM293:
         description: 'Run for PM293'
         required: false
         type: boolean
-      runCluster:
+      clusterTest-TableSignature:
         description: 'Run Cluster Test'
         required: false
         type: boolean  
