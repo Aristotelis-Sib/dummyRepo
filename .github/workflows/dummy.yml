@@ -5,13 +5,10 @@ name: TO Duplicate name
 
 # Controls when the workflow will run
 on:
-#   push:
-#     branches:
-#       - main
-  schedule:
-    # Run every Sunday at 02:00 UTC (04:00 UTC+2/Greek Timezone) If changed update Undrafting step bellow
-    - cron: '43 9 * * *'
-  
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
@@ -41,86 +38,9 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   deploy:
-#     if: "!contains(join(github.event.inputs.*,' '),'true')"
-    # The type of runner that the job will run on
     runs-on: [self-hosted, mypc]
-    outputs:
-      output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
-    steps:
-#         - name: Checkout the running branch
-#           uses: actions/checkout@v2
-
-#         - name: Set up MATLAB
-#           uses: matlab-actions/setup-matlab@v1
-        
-#         - name: Copy output with Powershell core
-#           id: output_res_pwsh
-#           run: |
-#             echo "output_1=ABC" >> $env:GITHUB_OUTPUT
-#             echo $env:GITHUB_OUTPUT
-#             echo ${{github.ref}}
-#           shell: pwsh
-            
-        - name: Inputs test
-          run: |
-            echo ${{github.event_name}}
-            $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
-            $inputNamesAndValues     = $inputsAsCSV -split "`r`n"
-            $inputNamesList          = $inputNamesAndValues[0].split(",")
-            $inputValuesList         = $inputNamesAndValues[1].split(",")
-            $matlabArgumentInput     = ""
-            for($i=0; $i -lt $inputNamesList.Length; $i++){
-              if ($inputValuesList[$i] -match 'true' ){
-                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
-              }  
-            }
-            if ($matlabArgumentInput.Length -eq 0){
-               $matlabArgumentInput = $inputNamesAndValues[0]
-            }
-            else{
-              $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
-            }
-            matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
-          shell: powershell
-          
-#         - name: Inputs test v2
-#           run: |
-#             $var = "${{ toJSON(github.event.inputs) }}"
-#             echo $var
-
-#         - name: Should not run step
-#           if: "!startsWith(github.ref, 'refs/heads/main')"
-#           run: |
-#             echo "Step runed"
-      
-#         - name: Copy output with Powershell core
-#           run: |
-#             echo $var = $(matlab -softwareopengl -batch "getTestsToPerform()")
-#             echo $var
-#           shell: pwsh
-
-
-#   job1:
-#     # The type of runner that the job will run on
-#     runs-on: windows-latest
-#     needs: deploy
-#     if: ( success() && needs.deploy.outputs.output_1== 'ddd' ) || ( needs.deploy.result == 'skipped' && contains(join(github.event.inputs.*,' '),'true'))
-#     steps:
-#         - name: Check if statement True
-#           if: needs.deploy.outputs.output_1== 'ABC'
-#           run: |
-#             echo "If statemnet works"
-#             sleep 2m
-#             shell: bash
-
-#         - name: Check if statement False
-#           if: needs.deploy.outputs.output_1== 'ABCD'
-#           run: |
-#             echo "If statemnet does not work"
-  
-#         - name: Check contains statement True AB
-#           if: contains(needs.deploy.outputs.output_1,'AB')
-#           run: echo "Contains works"
-
+    steps:       
+        - name: Copy output with Powershell core
+          id: output_res_pwsh
+          run: echo "TEST"          
