@@ -60,27 +60,27 @@ jobs:
 #             echo ${{github.ref}}
 #           shell: pwsh
             
-        - name: Inputs test
-          run: |
-            echo ${{github.event_name}}
-            $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
-            $inputNamesAndValues     = $inputsAsCSV -split "`r`n"
-            $inputNamesList          = $inputNamesAndValues[0].split(",")
-            $inputValuesList         = $inputNamesAndValues[1].split(",")
-            $matlabArgumentInput     = ""
-            for($i=0; $i -lt $inputNamesList.Length; $i++){
-              if ($inputValuesList[$i] -match 'true' ){
-                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
-              }  
-            }
-            if ($matlabArgumentInput.Length -eq 0){
-               $matlabArgumentInput = $inputNamesAndValues[0]
-            }
-            else{
-              $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
-            }
-            matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
-          shell: powershell
+#         - name: Inputs test
+#           run: |
+#             echo ${{github.event_name}}
+#             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
+#             $inputNamesAndValues     = $inputsAsCSV -split "`r`n"
+#             $inputNamesList          = $inputNamesAndValues[0].split(",")
+#             $inputValuesList         = $inputNamesAndValues[1].split(",")
+#             $matlabArgumentInput     = ""
+#             for($i=0; $i -lt $inputNamesList.Length; $i++){
+#               if ($inputValuesList[$i] -match 'true' ){
+#                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
+#               }  
+#             }
+#             if ($matlabArgumentInput.Length -eq 0){
+#                $matlabArgumentInput = $inputNamesAndValues[0]
+#             }
+#             else{
+#               $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+#             }
+#             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
+#           shell: powershell
           
 #         - name: Inputs test v2
 #           run: |
@@ -92,11 +92,9 @@ jobs:
 #           run: |
 #             echo "Step runed"
       
-#         - name: Copy output with Powershell core
-#           run: |
-#             echo $var = $(matlab -softwareopengl -batch "getTestsToPerform()")
-#             echo $var
-#           shell: pwsh
+        - name: Copy output with Powershell core
+          run: |
+            echo ${{github.ref}}
 
 
 #   job1:
