@@ -4,12 +4,10 @@ name: CI
 
 # Controls when the workflow will run
 on:
-#   push:
-#     branches:
-#       - main
-  schedule:
-    # Run every Sunday at 02:00 UTC (04:00 UTC+2/Greek Timezone) If changed update Undrafting step bellow
-    - cron: '43 9 * * *'
+  create:
+    tags:
+      - 'refs/tags/*'
+
   
   workflow_dispatch:
   # Define the inputs of this Workflow
