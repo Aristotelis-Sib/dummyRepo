@@ -6,7 +6,7 @@ name: CI
 on:
   push:
     tags:
-      - 'refs/tags/*'
+      - '*'
 
   
   workflow_dispatch:
