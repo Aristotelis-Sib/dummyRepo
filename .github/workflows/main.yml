@@ -98,7 +98,7 @@ jobs:
         - name: Copy output with Powershell core
           run: |
             echo ${{github.ref}}
-            sleep 15
+            sleep 15000
 
 
 #   job1:
