@@ -4,9 +4,11 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+      types: [ready_for_review, opened]
+      branches:
+          - main
+          
 
   workflow_dispatch:
   # Define the inputs of this Workflow
