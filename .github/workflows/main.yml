@@ -5,10 +5,9 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
 
-  
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
@@ -37,6 +36,10 @@ env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: true
+  
 jobs:
   # This workflow contains a single job called "build"
   deploy:
@@ -94,7 +97,7 @@ jobs:
       
         - name: Copy output with Powershell core
           run: |
-            echo ${{github.ref}}
+            sleep 1500
 
 
 #   job1:
