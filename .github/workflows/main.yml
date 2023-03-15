@@ -51,8 +51,10 @@ jobs:
       output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
         - name: Inputs test
+          if: github.event_name == 'workflow_dispatch'
           run: |
             echo ${{github.event_name}}
+            echo '${{ toJSON(github.event.inputs) }}'
             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
             $inputNamesAndValues     = $inputsAsCSV -split "`r`n"
             $inputNamesList          = $inputNamesAndValues[0].split(",")
