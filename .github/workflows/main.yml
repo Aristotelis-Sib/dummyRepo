@@ -56,7 +56,7 @@ jobs:
             echo ${{github.event_name}}
             echo '${{ toJSON(github.event.inputs) }}'
             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
-            $inputNamesAndValues     = $inputsAsCSV -split "`r`n"
+            $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
             $inputNamesList          = $inputNamesAndValues[0].split(",")
             $inputValuesList         = $inputNamesAndValues[1].split(",")
             $matlabArgumentInput     = ""
