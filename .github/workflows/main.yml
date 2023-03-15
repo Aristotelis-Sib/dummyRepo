@@ -66,12 +66,12 @@ jobs:
               }  
             }
             if ($matlabArgumentInput.Length -eq 0){
-               $matlabArgumentInput = $inputNamesAndValues[0]
+               echo "No test was selected"
             }
             else{
               $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
-            }
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
+            }
           shell: powershell
     
         - name: Copy output with Powershell core
