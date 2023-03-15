@@ -12,20 +12,20 @@ on:
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
-      motorTests-PM216:
-        description: 'Run for PM216'
+      motorTests-1:
+        description: 'Run for M1'
         type: boolean
         required: false
-      motorTests-PM291:
-        description: 'Run for PM291'
+      motorTests-2:
+        description: 'Run for M2'
         type: boolean
         required: false
-      motorTests-PM292:
-        description: 'Run for PM292'
+      motorTests-3:
+        description: 'Run for M3'
         type: boolean
         required: false
-      motorTests-PM293:
-        description: 'Run for PM293'
+      motorTests-4:
+        description: 'Run for M4'
         required: false
         type: boolean
       clusterTest-TableSignature:
