@@ -56,6 +56,7 @@ jobs:
         - name: Inputs test
           if: github.event_name == 'workflow_dispatch'
           run: |
+            
             echo ${{github.event_name}}
             echo '${{ toJSON(github.event.inputs) }}'
             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
