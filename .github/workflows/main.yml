@@ -80,6 +80,7 @@ jobs:
 
         - name: Restart Matlab
           run: |
+              matlab -softwareopengl -batch "printState()"
               matlab -softwareopengl -batch "restartMatlabAndExecute('printState')"        
 
 
