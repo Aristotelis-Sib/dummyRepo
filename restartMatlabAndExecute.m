@@ -5,7 +5,7 @@ p.addParameter('gitPullAfterRestart', false, @islogical);
 parse(p, varargin{:});
 gitPullAfterRestart = p.Results.gitPullAfterRestart; % Optional: pull from remote after restart and before adding folders to the path
 
-TIME_COUNTDOWN = 10; % in seconds
+TIME_COUNTDOWN = 1; % in seconds
 
 % Start countdown
 hWait  = waitbar(1, sprintf('\nMATLAB will restart in 10 seconds and then will resume execution.\nPlease do not manually close MATLAB!\n'), ...
