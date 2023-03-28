@@ -63,9 +63,9 @@ end
 matlabExePath = fullfile(matlabroot, 'bin', 'matlab.exe'); % full path of .exe of current version of MATLAB
 initialWorkingFolder = pwd;
 if usejava('desktop')
-    systemCmd     = sprintf('"%s" -sd "%s" -r "%s; %s"', matlabExePath, initialWorkingFolder, fixpathCommand, function2Exec);
+    systemCmd     = sprintf('"%s" -sd "%s" -r "%s"', matlabExePath, initialWorkingFolder, function2Exec);
 else
-    systemCmd     = sprintf('"%s" -sd "%s" -softwareopengl -batch "%s; %s"', matlabExePath, initialWorkingFolder, fixpathCommand, function2Exec);
+    systemCmd     = sprintf('"%s" -sd "%s" -softwareopengl -batch "%s"', matlabExePath, initialWorkingFolder, function2Exec);
 end
     
 system(systemCmd);
