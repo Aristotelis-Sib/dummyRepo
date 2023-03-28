@@ -1,4 +1,4 @@
-function isUserCancelled = restartMatlabAndExecute(initialWorkingFolder, function2Exec, varargin)
+function isUserCancelled = restartMatlabAndExecute(function2Exec, varargin)
 
 p = inputParser;
 p.addParameter('gitPullAfterRestart', false, @islogical);
@@ -61,7 +61,7 @@ end
 
 % Open new MATLAB session
 matlabExePath = fullfile(matlabroot, 'bin', 'matlab.exe'); % full path of .exe of current version of MATLAB
-
+initialWorkingFolder = pwd;
 if usejava('desktop')
     systemCmd     = sprintf('"%s" -sd "%s" -r "%s; %s"', matlabExePath, initialWorkingFolder, fixpathCommand, function2Exec);
 else
