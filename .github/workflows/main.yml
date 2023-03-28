@@ -8,6 +8,9 @@ on:
       types: [ready_for_review, opened]
       branches:
           - main
+  push:
+    branches:
+        -main 
 
   workflow_dispatch:
   # Define the inputs of this Workflow
@@ -78,6 +81,10 @@ jobs:
           run: |
             echo ${{github.ref}}
             sleep 20
+            
+        - name: Copy output with Powershell core
+          run: |
+              matlab -softwareopengl -batch "restartMatlabAndExecute('','printState')"        
 
 
 
