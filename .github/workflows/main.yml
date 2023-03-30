@@ -68,10 +68,10 @@ jobs:
             $matlabArgumentInput     = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
               if ($inputValuesList[$i] -match 'true' ){
-                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ";"
               }
               elseif ($inputNamesList[$i] -match 'clstframework-idxTestCase-' ){
-                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + $inputValuesList[$i] + ","
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + $inputValuesList[$i] + ";"
               }
               
             }
