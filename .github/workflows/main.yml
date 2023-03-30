@@ -15,23 +15,23 @@ on:
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
-      motorTests-1:
+      refMtr-motorsToSolve-m1::
         description: 'Run for M1'
         type: boolean
         required: false
-      motorTests-2:
+      refMtr-motorsToSolve-m2:
         description: 'Run for M2'
         type: boolean
         required: false
-      motorTests-3:
+      refMtr-motorsToSolve-m3:
         description: 'Run for M3'
         type: boolean
         required: false
-      motorTests-4:
+      refMtr-motorsToSolve-m4:
         description: 'Run for M4'
         required: false
         type: boolean
-      clusterTest-TableSignature:
+      tblSignature--:
         description: 'Run Cluster Test'
         required: false
         type: boolean  
@@ -53,39 +53,40 @@ jobs:
     outputs:
       output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
-#         - name: Inputs test
-#           if: github.event_name == 'workflow_dispatch'
-#           run: |
-            
-#             echo ${{github.event_name}}
-#             echo '${{ toJSON(github.event.inputs) }}'
-#             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
-#             $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
-#             $inputNamesList          = $inputNamesAndValues[0].split(",")
-#             $inputValuesList         = $inputNamesAndValues[1].split(",")
-#             $matlabArgumentInput     = ""
-#             for($i=0; $i -lt $inputNamesList.Length; $i++){
-#               if ($inputValuesList[$i] -match 'true' ){
-#                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
-#               }  
-#             }
-#             if ($matlabArgumentInput.Length -eq 0){
-#                echo "No test was selected"
-#             }
-#             else{
-#               $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
-#             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
-#             }
-#           shell: powershell
-    # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
-        - name: Checkout branch
-          uses: actions/checkout@v2
-          
-        - name: Restart Matlab
+        - name: Inputs test
+          if: github.event_name == 'workflow_dispatch'
           run: |
-              matlab -softwareopengl -batch "error('test')"
-              matlab -softwareopengl -batch "restartMatlabAndExecute('printState')"
-              matlab -softwareopengl -batch "error('test')"
+            
+            echo ${{github.event_name}}
+            echo '${{ toJSON(github.event.inputs) }}'
+            $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation
+            $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
+            $inputNamesList          = $inputNamesAndValues[0].split(",")
+            $inputValuesList         = $inputNamesAndValues[1].split(",")
+            $matlabArgumentInput     = ""
+            for($i=0; $i -lt $inputNamesList.Length; $i++){
+              if ($inputValuesList[$i] -match 'true' ){
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
+              }  
+            }
+            if ($matlabArgumentInput.Length -eq 0){
+               echo "No test was selected"
+            }
+            else{
+              $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+            }
+            matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
+            
+          shell: powershell
+    # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
+#         - name: Checkout branch
+#           uses: actions/checkout@v2
+          
+#         - name: Restart Matlab
+#           run: |
+#               matlab -softwareopengl -batch "error('test')"
+#               matlab -softwareopengl -batch "restartMatlabAndExecute('printState')"
+#               matlab -softwareopengl -batch "error('test')"
 
 
 
