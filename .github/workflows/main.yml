@@ -28,7 +28,7 @@ on:
         required: false
         type: boolean  
       clstframework-idxTestCase-:
-        description: 'Run for cluster framework'
+        description: 'Scenarios index for cluster framework (ex. 1,2,3)'
         type: string
         required: false
 env:
