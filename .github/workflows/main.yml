@@ -51,16 +51,20 @@ jobs:
         - name: Inputs test
           if: github.event_name == 'workflow_dispatch'
           run: |
-            
-            echo ${{github.event_name}}
+        
             echo '${{ toJSON(github.event.inputs) }}'
             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
+            echo "Here 1"
             echo $inputsAsCSV
             $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
+            echo "Here 2"
             echo $inputNamesAndValues
-            $inputNamesList          = $inputNamesAndValues[0].split(";")
+            $inputNamesList          = $inputNamesAndValues[0].split(';')
+            echo "Here 3"
             echo $inputNamesList
-            $inputValuesList         = $inputNamesAndValues[1].split(";")
+            $inputValuesList         = $inputNamesAndValues[1].split(';')
+            echo "Here 3"
+            echo $inputValuesList
             $matlabArgumentInput     = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
               if ($inputValuesList[$i] -match 'true' ){
