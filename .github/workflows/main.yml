@@ -63,7 +63,11 @@ jobs:
             for($i=0; $i -lt $inputNamesList.Length; $i++){
               if ($inputValuesList[$i] -match 'true' ){
                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ","
-              }  
+              }
+              elseif ($inputNamesList[$i] -match 'clstframework-idxTestCase-' ){
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + $inputValuesList[$i] + ","
+              }
+              
             }
             if ($matlabArgumentInput.Length -eq 0){
                echo "No test was selected"
