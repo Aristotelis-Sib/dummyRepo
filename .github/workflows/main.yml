@@ -23,15 +23,14 @@ on:
         description: 'Run for M2'
         type: boolean
         required: false
-      clstframework-idxTestCase-:
-        description: 'Run for cluster framework'
-        type: string
-        required: false  
       tblSignature--:
         description: 'Run Cluster Test'
         required: false
         type: boolean  
-      
+      clstframework-idxTestCase-:
+        description: 'Run for cluster framework'
+        type: string
+        required: false
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
