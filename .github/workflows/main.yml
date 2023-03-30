@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
-      refMtr-motorsToSolve-m1::
+      refMtr-motorsToSolve-m1:
         description: 'Run for M1'
         type: boolean
         required: false
@@ -23,14 +23,10 @@ on:
         description: 'Run for M2'
         type: boolean
         required: false
-      refMtr-motorsToSolve-m3:
-        description: 'Run for M3'
-        type: boolean
-        required: false
-      refMtr-motorsToSolve-m4:
-        description: 'Run for M4'
-        required: false
-        type: boolean
+      clstframework-idxTestCase-:
+        description: 'Run for cluster framework'
+        type: string
+        required: false  
       tblSignature--:
         description: 'Run Cluster Test'
         required: false
