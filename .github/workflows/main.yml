@@ -55,8 +55,11 @@ jobs:
             echo ${{github.event_name}}
             echo '${{ toJSON(github.event.inputs) }}'
             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
+            echo $inputsAsCSV
             $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
+            echo $inputNamesAndValues
             $inputNamesList          = $inputNamesAndValues[0].split(";")
+            echo $inputNamesList
             $inputValuesList         = $inputNamesAndValues[1].split(";")
             $matlabArgumentInput     = ""
             for($i=0; $i -lt $inputNamesList.Length; $i++){
