@@ -19,18 +19,7 @@ on:
         description: 'Run for M1'
         type: boolean
         required: false
-      refMtr-motorsToSolve-m2:
-        description: 'Run for M2'
-        type: boolean
-        required: false
-      tblSignature--:
-        description: 'Run Cluster Test'
-        required: false
-        type: boolean  
-      clstframework-idxTestCase-:
-        description: 'Scenarios index for cluster framework (ex. 1,2,3)'
-        type: string
-        required: false
+
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
