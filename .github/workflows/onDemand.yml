@@ -1,0 +1,110 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI On Demand
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+  # Define the inputs of this Workflow
+    inputs:
+      test1:
+        description: 'Test 1'
+        type: boolean
+        required: false
+      test2:
+        description: 'Test 2'
+        type: boolean
+        required: false
+      test3:
+        description: 'Test 3'
+        required: false
+        type: boolean  
+     
+env:
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+  # This workflow contains a single job called "build"
+  deploy:
+#     if: "!contains(join(github.event.inputs.*,' '),'true')"
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, mypcrunner]
+    outputs:
+      output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
+    steps:
+        - name: Inputs test
+          if: github.event_name == 'workflow_dispatch'
+          run: |
+        
+            echo '${{ toJSON(github.event.inputs) }}'
+            $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
+            echo "Here 1"
+            echo $inputsAsCSV
+            $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
+            echo "Here 2"
+            echo $inputNamesAndValues
+            $inputNamesList          = $inputNamesAndValues[0].split(';')
+            echo "Here 3"
+            echo $inputNamesList
+            $inputValuesList         = $inputNamesAndValues[1].split(';')
+            echo "Here 3"
+            echo $inputValuesList
+            $matlabArgumentInput     = ""
+            for($i=0; $i -lt $inputNamesList.Length; $i++){
+              if ($inputValuesList[$i] -match 'true' ){
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ";"
+              }
+              elseif ($inputNamesList[$i] -match 'clstframework-idxTestCase-' ){
+                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + $inputValuesList[$i] + ";"
+              }
+              
+            }
+            if ($matlabArgumentInput.Length -eq 0){
+               echo "No test was selected"
+            }
+            else{
+              $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+            }
+            matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
+            
+          shell: powershell
+    # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
+#         - name: Checkout branch
+#           uses: actions/checkout@v2
+          
+#         - name: Restart Matlab
+#           run: |
+#               matlab -softwareopengl -batch "error('test')"
+#               matlab -softwareopengl -batch "restartMatlabAndExecute('printState')"
+#               matlab -softwareopengl -batch "error('test')"
+
+
+
+
+#   job1:
+#     # The type of runner that the job will run on
+#     runs-on: windows-latest
+#     needs: deploy
+#     if: ( success() && needs.deploy.outputs.output_1== 'ddd' ) || ( needs.deploy.result == 'skipped' && contains(join(github.event.inputs.*,' '),'true'))
+#     steps:
+#         - name: Check if statement True
+#           if: needs.deploy.outputs.output_1== 'ABC'
+#           run: |
+#             echo "If statemnet works"
+#             sleep 2m
+#             shell: bash
+
+#         - name: Check if statement False
+#           if: needs.deploy.outputs.output_1== 'ABCD'
+#           run: |
+#             echo "If statemnet does not work"
+  
+#         - name: Check contains statement True AB
+#           if: contains(needs.deploy.outputs.output_1,'AB')
+#           run: echo "Contains works"
+
