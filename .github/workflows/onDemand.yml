@@ -4,6 +4,10 @@ name: CI On Demand
 
 # Controls when the workflow will run
 on:
+  push:
+    branches:
+          -main 
+
   workflow_dispatch:
   # Define the inputs of this Workflow
     inputs:
