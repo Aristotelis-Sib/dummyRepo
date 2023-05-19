@@ -84,7 +84,15 @@ jobs:
             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
             
           shell: powershell
-    # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
+          
+          
+        - name: Dump GitHub context 
+          env:
+              GITHUB_CONTEXT: ${{ toJSON(github) }}
+          run: |
+              echo $env.GITHUB_CONTEXT.PR_NUMBER
+              echo $env.GITHUB_CONTEXT.run_number
+  # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
 #         - name: Checkout branch
 #           uses: actions/checkout@v2
           
