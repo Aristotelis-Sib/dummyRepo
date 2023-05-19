@@ -87,18 +87,10 @@ jobs:
           
           
         - name: Dump GitHub context 
-          env:
-              GITHUB_CONTEXT: ${{ toJSON(github) }}
           run: |
-              $json  = '${{ toJSON(github) }}' | ConvertFrom-JSON 
-              $json2 = '${{ toJSON(github) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
-              echo $json
-              echo $json2
-              $foo = New-Object FooObject
-              $foo.PR_NUMBER = $json.PR_NUMBER
-              $foo.run_number = $json.run_number
-              echo $foo.PR_NUMBER
-              echo $foo.run_number
+              echo ${{ env.PR_NUMBER}}
+              $json  = '${{ toJSON(github) }}' | ConvertFrom-JSON              
+              echo $json.run_number
               
   # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
 #         - name: Checkout branch
