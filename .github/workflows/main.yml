@@ -88,7 +88,6 @@ jobs:
           
         - name: Dump GitHub context 
           run: |
-              echo ${{ env.PR_NUMBER}}
               $json  = '${{ toJSON(github) }}' | ConvertFrom-JSON              
               echo $json.run_number
               
