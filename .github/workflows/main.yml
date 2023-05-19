@@ -90,7 +90,10 @@ jobs:
           env:
               GITHUB_CONTEXT: ${{ toJSON(github) }}
           run: |
-              $json = Get-Content ${{ toJSON(github) }} | Out-String | ConvertFrom-Json
+              $json  = '${{ toJSON(github) }}' | ConvertFrom-JSON 
+              $json2 = '${{ toJSON(github) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
+              echo $json
+              echo $json2
               $foo = New-Object FooObject
               $foo.PR_NUMBER = $json.PR_NUMBER
               $foo.run_number = $json.run_number
