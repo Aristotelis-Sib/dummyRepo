@@ -48,50 +48,56 @@ jobs:
     outputs:
       output_1: ${{ steps.output_res_pwsh.outputs.output_1 }}
     steps:
-        - name: Inputs test
-          if: github.event_name == 'workflow_dispatch'
-          run: |
+#         - name: Inputs test
+#           if: github.event_name == 'workflow_dispatch'
+#           run: |
         
-            echo '${{ toJSON(github.event.inputs) }}'
-            $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
-            echo "Here 1"
-            echo $inputsAsCSV
-            $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
-            echo "Here 2"
-            echo $inputNamesAndValues
-            $inputNamesList          = $inputNamesAndValues[0].split(';')
-            echo "Here 3"
-            echo $inputNamesList
-            $inputValuesList         = $inputNamesAndValues[1].split(';')
-            echo "Here 3"
-            echo $inputValuesList
-            $matlabArgumentInput     = ""
-            for($i=0; $i -lt $inputNamesList.Length; $i++){
-              if ($inputValuesList[$i] -match 'true' ){
-                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ";"
-              }
-              elseif ($inputNamesList[$i] -match 'clstframework-idxTestCase-' ){
-                    $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + $inputValuesList[$i] + ";"
-              }
+#             echo '${{ toJSON(github.event.inputs) }}'
+#             $inputsAsCSV             = '${{ toJSON(github.event.inputs) }}' | ConvertFrom-JSON | ConvertTo-Csv -NoTypeInformation -Delimiter ';'
+#             echo "Here 1"
+#             echo $inputsAsCSV
+#             $inputNamesAndValues     = $inputsAsCSV.split("`r`n")
+#             echo "Here 2"
+#             echo $inputNamesAndValues
+#             $inputNamesList          = $inputNamesAndValues[0].split(';')
+#             echo "Here 3"
+#             echo $inputNamesList
+#             $inputValuesList         = $inputNamesAndValues[1].split(';')
+#             echo "Here 3"
+#             echo $inputValuesList
+#             $matlabArgumentInput     = ""
+#             for($i=0; $i -lt $inputNamesList.Length; $i++){
+#               if ($inputValuesList[$i] -match 'true' ){
+#                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + ";"
+#               }
+#               elseif ($inputNamesList[$i] -match 'clstframework-idxTestCase-' ){
+#                     $matlabArgumentInput = $matlabArgumentInput + $inputNamesList[$i] + $inputValuesList[$i] + ";"
+#               }
               
-            }
-            if ($matlabArgumentInput.Length -eq 0){
-               echo "No test was selected"
-            }
-            else{
-              $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
-            }
-            matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
+#             }
+#             if ($matlabArgumentInput.Length -eq 0){
+#                echo "No test was selected"
+#             }
+#             else{
+#               $matlabArgumentInput = $matlabArgumentInput.Substring(0, $matlabArgumentInput.Length-1)
+#             }
+#             matlab -softwareopengl -batch "tmp=string('$matlabArgumentInput');disp(tmp)"
             
-          shell: powershell
+#           shell: powershell
           
           
         - name: Dump GitHub context 
           env:
               GITHUB_CONTEXT: ${{ toJSON(github) }}
           run: |
-              echo $env.GITHUB_CONTEXT.PR_NUMBER
-              echo $env.GITHUB_CONTEXT.run_number
+              echo $env.GITHUB_CONTEXT
+              $json = Get-Content $env.GITHUB_CONTEXT | Out-String | ConvertFrom-Json
+              $foo = New-Object FooObject
+              $foo.PR_NUMBER = $json.PR_NUMBER
+              $foo.run_number = $json.run_number
+              echo $foo.PR_NUMBER
+              echo $foo.run_number
+              
   # checkout the branch that is to be merged, note that the working directory is C:\GitHub runners\test-runner1\actions-runner\_work (or test-runner2) on the testing runner    
 #         - name: Checkout branch
 #           uses: actions/checkout@v2
