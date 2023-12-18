@@ -1,0 +1,40 @@
+name: Check Pull Request Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-tests:
+    runs-on: [self-hosted, mypcrunner]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Get check runs
+        id: check-runs
+        run: |
+          response=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/check-runs")
+          check_runs=$(echo "$response" | jq -r '.check_runs[] | select(.status == "completed")')
+          echo "::set-output name=check_runs::$check_runs"
+      - name: Check if tests passed at some point
+        run: |
+          check_runs=$([[ -z "${{ steps.check-runs.outputs.check_runs }}" ]] && echo "[]" || echo "${{ steps.check-runs.outputs.check_runs }}")
+          tests_passed=false
+          for check_run in $(echo "$check_runs" | jq -r '.conclusion, .status'); do
+            if [[ "$check_run" == "success" ]]; then
+              tests_passed=true
+              break
+            fi
+          done
+          echo "Tests passed at some point: $tests_passed"
+
+
+
+
+
+
+
+
